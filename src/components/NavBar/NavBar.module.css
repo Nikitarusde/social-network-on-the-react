@@ -1,0 +1,14 @@
+.navBar{
+    grid-area: n;
+    background-color: teal;
+    color: white;
+}
+
+.item a{
+    color: white;
+    text-decoration: none;
+}
+
+.item-activ a{
+    color: chartreuse;
+}

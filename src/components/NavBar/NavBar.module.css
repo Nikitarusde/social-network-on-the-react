@@ -9,6 +9,6 @@
     text-decoration: none;
 }
 
-.item-activ a{
-    color: chartreuse;
+.item a.active{
+    color: gold;
 }

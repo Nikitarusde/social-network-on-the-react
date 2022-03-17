@@ -23,25 +23,47 @@ type MassageType = {
 
 const Message = (props: MassageType) => {
     return (
-            <div className={classes.message}>{props.text}</div>
+        <div className={classes.message}>{props.text}</div>
     )
 }
 
 
 export const Dialogs = () => {
+    let dialogsData = [
+        {id: 1, name: "Nikita"},
+        {id: 2, name: "Dima"},
+        {id: 3, name: "Igor"},
+        {id: 4, name: "Sveta"},
+        {id: 5, name: "Dasha"},
+    ]
+
+    let messagesData = [
+        {id: 1, text: "Hey Bro"},
+        {id: 2, text: "How are your study?"},
+        {id: 3, text: "How yot get a some time on Thursday?"},
+    ]
+
+    let dialogsElement = dialogsData.map(m=> <DialogItem name={m.name} id={m.id}/>)
+    let messagesElement =  messagesData.map(m=> <Message text={m.text} />)
+
+
     return (
         <div className={classes.dialogs}>
             <div className={classes.dialogsItems}>
-                <DialogItem name={"Nikita"} id={1}/>
-                <DialogItem name={"Dima"} id={2}/>
-                <DialogItem name={"Igor"} id={3}/>
-                <DialogItem name={"Sveta"} id={4}/>
-                <DialogItem name={"Dasha"} id={5}/>
+                {dialogsElement}
+
+                {/*<DialogItem name={"Nikita"} id={1}/>*/}
+                {/*<DialogItem name={"Dima"} id={2}/>*/}
+                {/*<DialogItem name={"Igor"} id={3}/>*/}
+                {/*<DialogItem name={"Sveta"} id={4}/>*/}
+                {/*<DialogItem name={"Dasha"} id={5}/>*/}
             </div>
             <div className={classes.messages}>
-                <Message text={"Hey Bro"}/>
-                <Message text={"How are your study?"}/>
-                <Message text={"How yot get a some time on Thursday?"}/>
+
+                {messagesElement}
+                {/*<Message text={"Hey Bro"}/>*/}
+                {/*<Message text={"How are your study?"}/>*/}
+                {/*<Message text={"How yot get a some time on Thursday?"}/>*/}
             </div>
 
         </div>

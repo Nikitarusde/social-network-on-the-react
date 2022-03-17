@@ -4,6 +4,7 @@ import classes from "./Post.module.css"
 
 type PostProps = {
     massage?: string
+    likesCounter: number
 }
 
 export function Post(props: PostProps) {

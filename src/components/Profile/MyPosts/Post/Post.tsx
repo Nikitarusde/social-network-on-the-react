@@ -13,7 +13,7 @@ export function Post(props: PostProps) {
             <img className={classes.avatar}
                 src="https://img.freepik.com/vetores-gratis/avatar-de-polvo-vermelho-bonito_79416-77.jpg"
                 alt=""/>
-            {props.massage}
+            {props.massage} {props.likesCounter}
         </div>
     );
 }

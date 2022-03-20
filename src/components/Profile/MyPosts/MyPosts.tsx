@@ -2,17 +2,17 @@ import React from 'react';
 // @ts-ignore
 import classes from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
+import {PostData} from "../../../index";
 
 
-export function MyPosts() {
-    let postData = [
-        {id: 1, message: "How are you?", likesCount: 12 },
-        {id: 1, message: "It is my first project", likesCount: 2 },
-        {id: 1, message: "I would be to make social network", likesCounter: 54 },
-    ]
+type MyPosts = {
+    postData: Array<PostData>,
+}
+
+export function MyPosts(props: MyPosts) {
 
     // @ts-ignore
-    let postElement = postData.map(m=> <Post massage={m.message} id={m.id} />)
+    let postElement = props.postData.map(m=> <Post  id={m.id} massage={m.message}likesCounter={m.likesCount} />)
 
   return (
       <div>

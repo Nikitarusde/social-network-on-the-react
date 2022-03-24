@@ -2,7 +2,7 @@ import React from 'react';
 // @ts-ignore
 import classes from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {PostData} from "../../../index";
+import {PostData} from "../../../redux/state";
 
 
 type MyPosts = {

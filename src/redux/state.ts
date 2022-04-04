@@ -25,6 +25,15 @@ export type State = {
     }
 }
 
+export let addPost = (postMessage: string) => {
+    let newPost = {
+        id: 5,
+        message: postMessage,
+        likesCount: 3,
+    }
+    state.profilePage.postData.push(newPost);
+}
+
 
 export let state = {
     profilePage: {

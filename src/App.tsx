@@ -15,6 +15,7 @@ import {State} from "./redux/state";
 
 type AppType = {
     state: State
+    addPost: (postMessage: string) => void
 }
 
 function App(props: AppType) {
@@ -26,7 +27,7 @@ function App(props: AppType) {
                 <NavBar/>
 
                     <div className={"content"}>
-                        <Route path="/profile" component={ () => <Profile state={props.state}/>}/>
+                        <Route path="/profile" component={ () => <Profile state={props.state} addPost={props.addPost}/>}/>
                         <Route path="/messages" component={ () => <Dialogs
                             state={props.state}/>}/>
                         <Route path="/news" component={News}/>

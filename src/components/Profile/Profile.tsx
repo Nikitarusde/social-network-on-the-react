@@ -7,7 +7,8 @@ import {State} from "../../redux/state";
 
 
 type Profile = {
-   state: State
+    state: State,
+    addPost: (postMessage: string) => void,
 };
 
 export function Profile(props: Profile) {
@@ -15,8 +16,10 @@ export function Profile(props: Profile) {
 
     return (
         <div>
-            <ProfileInfo />
-            <MyPosts postData={props.state.profilePage.postData}/>
+            <ProfileInfo/>
+            <MyPosts postData={props.state.profilePage.postData}
+                     addPost={props.addPost}
+            />
         </div>
     );
 }

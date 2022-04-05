@@ -20,6 +20,7 @@ export type MessagesData = {
 export type State = {
     profilePage: {
         postData: Array<PostData>,
+        newPostText: string,
     }
     messagesPage: {
         dialogsData:  Array<DialogsData>,
@@ -36,6 +37,7 @@ export let state: State = {
             {id: 1, message: "It is my first project", likesCount: 2},
             {id: 1, message: "I would be to make social network", likesCount: 54},
         ],
+        newPostText: "Nikita-Samurai",
     },
 
     messagesPage: {
@@ -53,14 +55,18 @@ export let state: State = {
         ],
     },
 }
-export let addPost = (postMessage: string) => {
+export let addPost = () => {
     let newPost = {
         id: 5,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 3,
     }
     state.profilePage.postData.push(newPost);
+    state.profilePage.newPostText = "";
+    rerenderEntireTree(state)
+}
 
-
+export let updateNewPostText = (newText: string) => {
+    state.profilePage.newPostText = newText
     rerenderEntireTree(state)
 }

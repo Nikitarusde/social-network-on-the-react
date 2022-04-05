@@ -8,7 +8,7 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom";
-import {State} from "./redux/state";
+import {State, updateNewPostText} from "./redux/state";
 
 
 
@@ -16,6 +16,7 @@ import {State} from "./redux/state";
 type AppType = {
     state: State
     addPost: (postMessage: string) => void
+    updateNewPostText: (newText: string) => void
 }
 
 function App(props: AppType) {
@@ -27,7 +28,12 @@ function App(props: AppType) {
                 <NavBar/>
 
                     <div className={"content"}>
-                        <Route path="/profile" component={ () => <Profile state={props.state} addPost={props.addPost}/>}/>
+                        <Route path="/profile" component={ () =>
+                            <Profile
+                            state={props.state}
+                            addPost={props.addPost}
+                            updateNewPostText={props.updateNewPostText}
+                            />}/>
                         <Route path="/messages" component={ () => <Dialogs
                             state={props.state}/>}/>
                         <Route path="/news" component={News}/>

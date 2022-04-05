@@ -3,12 +3,13 @@ import React from 'react';
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {State} from "../../redux/state";
+import {State, updateNewPostText} from "../../redux/state";
 
 
 type Profile = {
     state: State,
     addPost: (postMessage: string) => void,
+    updateNewPostText: (newText: string) => void
 };
 
 export function Profile(props: Profile) {
@@ -17,8 +18,9 @@ export function Profile(props: Profile) {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postData={props.state.profilePage.postData}
+            <MyPosts state={props.state}
                      addPost={props.addPost}
+                     updateNewPostText={props.updateNewPostText}
             />
         </div>
     );

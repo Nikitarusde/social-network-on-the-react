@@ -3,11 +3,11 @@ import React from 'react';
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {State, updateNewPostText} from "../../redux/state";
+import {State, StoreType} from "../../redux/state";
 
 
 type Profile = {
-    state: State,
+    state: State
     addPost: (postMessage: string) => void,
     updateNewPostText: (newText: string) => void
 };

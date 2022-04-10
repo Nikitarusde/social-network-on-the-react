@@ -8,18 +8,17 @@ import { News } from './components/News/News';
 import { Music } from './components/Music/Music';
 import { Settings } from './components/Settings/Settings';
 import {BrowserRouter, Route} from "react-router-dom";
-import {State, updateNewPostText} from "./redux/state";
+import {StoreType} from "./redux/state";
 
 
 
 
 type AppType = {
-    state: State
-    addPost: (postMessage: string) => void
-    updateNewPostText: (newText: string) => void
+    store: StoreType
 }
 
 function App(props: AppType) {
+    const state = props.store.getState();
     // @ts-ignore
     return (
         <BrowserRouter>
@@ -30,12 +29,12 @@ function App(props: AppType) {
                     <div className={"content"}>
                         <Route path="/profile" component={ () =>
                             <Profile
-                            state={props.state}
-                            addPost={props.addPost}
-                            updateNewPostText={props.updateNewPostText}
+                            state={state}
+                            addPost={props.store.addPost.bind(props.store)}
+                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                             />}/>
                         <Route path="/messages" component={ () => <Dialogs
-                            state={props.state}/>}/>
+                            state={props.store._state}/>}/>
                         <Route path="/news" component={News}/>
                         <Route path="/music" component={Music}/>
                         <Route path="/settings" component={Settings}/>

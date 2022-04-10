@@ -2,7 +2,7 @@ import React, {ChangeEvent} from 'react';
 // @ts-ignore
 import classes from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {PostData, State, updateNewPostText} from "../../../redux/state";
+import {State} from "../../../redux/state";
 
 
 type MyPosts = {

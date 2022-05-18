@@ -26,15 +26,28 @@ export type State = {
     }
 }
 
+
 export type StoreType = {
     _state: State,
-    addPost: () => void,
-    updateNewPostText: (newText: string) => void,
+    // addPost: () => void,
+    // updateNewPostText: (newText: string) => void,
     subscribe: (observer: () => void) => void
     _rerenderEntireTree: () => void
     getState: () => State
-
+    dispatch: (action: ActionsTypes) => void
 }
+
+type AddPostActionType = {
+    type:  "ADD-POST",
+    newPostText: string
+}
+
+type ChangeNewTextActionType = {
+    type:  "CHANGE-NEW-TEXT",
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
 
 export let store: StoreType = {
     _state: {
@@ -66,27 +79,44 @@ export let store: StoreType = {
         console.log("State rerender")
     },
 
-    addPost() {
-        let newPost = {
-            id: 5,
-            message: this._state.profilePage.newPostText,
-            likesCount: 3,
-        }
-        this._state.profilePage.postData.push(newPost);
-        this._state.profilePage.newPostText = "";
-        this._rerenderEntireTree()
-    },
-
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText
-        this._rerenderEntireTree()
-    },
+    // addPost() {
+    //     let newPost = {
+    //         id: 5,
+    //         message: this._state.profilePage.newPostText,
+    //         likesCount: 3,
+    //     }
+    //     this._state.profilePage.postData.push(newPost);
+    //     this._state.profilePage.newPostText = "";
+    //     this._rerenderEntireTree()
+    // },
+    //
+    // updateNewPostText(newText: string) {
+    //     this._state.profilePage.newPostText = newText
+    //     this._rerenderEntireTree()
+    // },
 
     subscribe(observer) {
         this._rerenderEntireTree = observer
     },
     getState() {
         return this._state
+    },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost = {
+                id: 5,
+                message: this._state.profilePage.newPostText,
+                // this._state.profilePage.newPostText,
+                likesCount: 3,
+            }
+            this._state.profilePage.postData.push(newPost);
+            this._state.profilePage.newPostText = "";
+            this._rerenderEntireTree()
+        } else if (action.type === "CHANGE-NEW-TEXT") {
+            this._state.profilePage.newPostText = action.newText
+            this._rerenderEntireTree()
+        }
     }
 }
 

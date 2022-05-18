@@ -2,13 +2,14 @@ import React, {ChangeEvent} from 'react';
 // @ts-ignore
 import classes from "./MyPosts.module.css"
 import {Post} from "./Post/Post";
-import {State} from "../../../redux/state";
+import {ActionsTypes, State} from "../../../redux/state";
 
 
 type MyPosts = {
     state: State,
-    addPost: (postMessage: string) => void,
-    updateNewPostText: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void,
+    // addPost: (postMessage: string) => void,
+    // updateNewPostText: (newText: string) => void
 }
 
 export function MyPosts(props: MyPosts) {
@@ -20,12 +21,12 @@ export function MyPosts(props: MyPosts) {
 
     let addPost = ( ) => {
         // @ts-ignore
-        props.addPost()
+        props.dispatch({type: "ADD-POST"})
     }
 
     let onChangeTextarea = () => {
         let text = newPostElement.current.value
-        props.updateNewPostText(text)
+        props.dispatch({type: "CHANGE-NEW-TEXT", newText: text})
     }
     // @ts-ignore
   return (

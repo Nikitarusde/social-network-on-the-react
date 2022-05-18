@@ -30,8 +30,9 @@ function App(props: AppType) {
                         <Route path="/profile" component={ () =>
                             <Profile
                             state={state}
-                            addPost={props.store.addPost.bind(props.store)}
-                            updateNewPostText={props.store.updateNewPostText.bind(props.store)}
+                            dispatch={props.store.dispatch.bind(props.store)}
+                            // addPost={props.store.addPost.bind(props.store)}
+                            // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                             />}/>
                         <Route path="/messages" component={ () => <Dialogs
                             state={props.store._state}/>}/>

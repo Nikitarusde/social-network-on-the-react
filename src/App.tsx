@@ -31,8 +31,6 @@ function App(props: AppType) {
                             <Profile
                             state={state}
                             dispatch={props.store.dispatch.bind(props.store)}
-                            // addPost={props.store.addPost.bind(props.store)}
-                            // updateNewPostText={props.store.updateNewPostText.bind(props.store)}
                             />}/>
                         <Route path="/messages" component={ () => <Dialogs
                             state={props.store._state}/>}/>

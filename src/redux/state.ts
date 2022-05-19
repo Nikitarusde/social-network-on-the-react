@@ -29,25 +29,27 @@ export type State = {
 
 export type StoreType = {
     _state: State,
-    // addPost: () => void,
-    // updateNewPostText: (newText: string) => void,
     subscribe: (observer: () => void) => void
     _rerenderEntireTree: () => void
     getState: () => State
     dispatch: (action: ActionsTypes) => void
 }
 
-type AddPostActionType = {
-    type:  "ADD-POST",
-    newPostText: string
-}
 
-type ChangeNewTextActionType = {
-    type:  "CHANGE-NEW-TEXT",
-    newText: string
-}
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
 
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export const addPostAC = (newPostText: string) => {
+    return{
+        type: "ADD-POST",
+        newPostText: newPostText
+    } as const
+}
+export const changeNewTextAC = (newText: string) => {
+    return{
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
+}
 
 export let store: StoreType = {
     _state: {
@@ -79,22 +81,6 @@ export let store: StoreType = {
         console.log("State rerender")
     },
 
-    // addPost() {
-    //     let newPost = {
-    //         id: 5,
-    //         message: this._state.profilePage.newPostText,
-    //         likesCount: 3,
-    //     }
-    //     this._state.profilePage.postData.push(newPost);
-    //     this._state.profilePage.newPostText = "";
-    //     this._rerenderEntireTree()
-    // },
-    //
-    // updateNewPostText(newText: string) {
-    //     this._state.profilePage.newPostText = newText
-    //     this._rerenderEntireTree()
-    // },
-
     subscribe(observer) {
         this._rerenderEntireTree = observer
     },
@@ -107,7 +93,6 @@ export let store: StoreType = {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
-                // this._state.profilePage.newPostText,
                 likesCount: 3,
             }
             this._state.profilePage.postData.push(newPost);

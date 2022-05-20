@@ -33,6 +33,7 @@ function App(props: AppType) {
                             dispatch={props.store.dispatch.bind(props.store)}
                             />}/>
                         <Route path="/messages" component={ () => <Dialogs
+                            dispatch={props.store.dispatch.bind(props.store)}
                             state={props.store._state}/>}/>
                         <Route path="/news" component={News}/>
                         <Route path="/music" component={Music}/>

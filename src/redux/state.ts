@@ -23,6 +23,7 @@ export type State = {
     messagesPage: {
         dialogsData: Array<DialogsData>,
         messagesData: Array<MessagesData>,
+        newMessageBody: string,
     }
 }
 
@@ -32,11 +33,12 @@ export type StoreType = {
     subscribe: (observer: () => void) => void
     _rerenderEntireTree: () => void
     getState: () => State
-    dispatch: (action: ActionsTypes) => void
+    dispatch: (action: ActionsTypes | ActionDialogs) => void
 }
 
 
 export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
+export type ActionDialogs = ReturnType<typeof updateNewMessageBodyAC> | ReturnType<typeof sendMessageAC>
 
 export const addPostAC = (newPostText: string) => {
     return{
@@ -48,6 +50,17 @@ export const changeNewTextAC = (newText: string) => {
     return{
         type: "CHANGE-NEW-TEXT",
         newText: newText
+    } as const
+}
+export const updateNewMessageBodyAC = (body: string) => {
+    return{
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
+export const sendMessageAC = () => {
+    return{
+        type: "SEND-MESSAGE",
     } as const
 }
 
@@ -74,7 +87,10 @@ export let store: StoreType = {
                 {id: 1, text: "Hey Bro"},
                 {id: 2, text: "How are your study?"},
                 {id: 3, text: "How yot get a some time on Thursday?"},
+                {id: 4, text: "How yot get a some time on Thursday?"},
+
             ],
+            newMessageBody: ""
         },
     },
     _rerenderEntireTree()  {
@@ -100,6 +116,14 @@ export let store: StoreType = {
             this._rerenderEntireTree()
         } else if (action.type === "CHANGE-NEW-TEXT") {
             this._state.profilePage.newPostText = action.newText
+            this._rerenderEntireTree()
+        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+            this._state.messagesPage.newMessageBody = action.body
+            this._rerenderEntireTree()
+        } else if (action.type === "SEND-MESSAGE") {
+            let body = this._state.messagesPage.newMessageBody
+            this._state.messagesPage.newMessageBody = ""
+            this._state.messagesPage.messagesData.push({id: 6, text: body})
             this._rerenderEntireTree()
         }
     }

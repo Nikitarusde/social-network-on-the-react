@@ -1,5 +1,5 @@
-import {profileReducer} from "./profile-reducer";
-import {messagesReducer} from "./messages-reducer";
+import {ActionsTypes, profileReducer} from "./profile-reducer";
+import {ActionDialogs, messagesReducer} from "./messages-reducer";
 
 export type PostData = {
     id: number,
@@ -37,34 +37,6 @@ export type StoreType = {
     _rerenderEntireTree: () => void
     getState: () => State
     dispatch: (action: ActionsTypes | ActionDialogs) => void
-}
-
-
-export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
-export type ActionDialogs = ReturnType<typeof updateNewMessageBodyAC> | ReturnType<typeof sendMessageAC>
-
-export const addPostAC = (newPostText: string) => {
-    return{
-        type: "ADD-POST",
-        newPostText: newPostText
-    } as const
-}
-export const changeNewTextAC = (newText: string) => {
-    return{
-        type: "CHANGE-NEW-TEXT",
-        newText: newText
-    } as const
-}
-export const updateNewMessageBodyAC = (body: string) => {
-    return{
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: body
-    } as const
-}
-export const sendMessageAC = () => {
-    return{
-        type: "SEND-MESSAGE",
-    } as const
 }
 
 export let store: StoreType = {

@@ -3,7 +3,8 @@ import React from 'react';
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsTypes, State} from "../../redux/state";
+import {State} from "../../redux/state";
+import {ActionsTypes} from "../../redux/profile-reducer";
 
 
 type Profile = {

@@ -25,3 +25,18 @@ export const messagesReducer = (state, action) => {
     //
     // return state
 }
+
+export type ActionDialogs = ReturnType<typeof updateNewMessageBodyAC> | ReturnType<typeof sendMessageAC>
+
+
+export const updateNewMessageBodyAC = (body: string) => {
+    return{
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: body
+    } as const
+}
+export const sendMessageAC = () => {
+    return{
+        type: "SEND-MESSAGE",
+    } as const
+}

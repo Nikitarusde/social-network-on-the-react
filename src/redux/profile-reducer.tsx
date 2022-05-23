@@ -31,3 +31,18 @@ export const profileReducer = (state, action) => {
 
     // return state
 }
+
+export type ActionsTypes = ReturnType<typeof addPostAC> | ReturnType<typeof changeNewTextAC>
+
+export const addPostAC = (newPostText: string) => {
+    return{
+        type: "ADD-POST",
+        newPostText: newPostText
+    } as const
+}
+export const changeNewTextAC = (newText: string) => {
+    return{
+        type: "CHANGE-NEW-TEXT",
+        newText: newText
+    } as const
+}

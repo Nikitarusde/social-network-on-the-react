@@ -1,3 +1,6 @@
+import {profileReducer} from "./profile-reducer";
+import {messagesReducer} from "./messages-reducer";
+
 export type PostData = {
     id: number,
     message: string,
@@ -105,27 +108,34 @@ export let store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost = {
-                id: 5,
-                message: this._state.profilePage.newPostText,
-                likesCount: 3,
-            }
-            this._state.profilePage.postData.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._rerenderEntireTree()
-        } else if (action.type === "CHANGE-NEW-TEXT") {
-            this._state.profilePage.newPostText = action.newText
-            this._rerenderEntireTree()
-        } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-            this._state.messagesPage.newMessageBody = action.body
-            this._rerenderEntireTree()
-        } else if (action.type === "SEND-MESSAGE") {
-            let body = this._state.messagesPage.newMessageBody
-            this._state.messagesPage.newMessageBody = ""
-            this._state.messagesPage.messagesData.push({id: 6, text: body})
-            this._rerenderEntireTree()
-        }
+        // @ts-ignore
+        this._state.profilePage = profileReducer(this._state.profilePage, action)
+        // @ts-ignore
+        this._state.messagesPage = messagesReducer(this._state.messagesPage, action)
+
+        this._rerenderEntireTree()
+
+        // if (action.type === "ADD-POST") {
+        //     let newPost = {
+        //         id: 5,
+        //         message: this._state.profilePage.newPostText,
+        //         likesCount: 3,
+        //     }
+        //     this._state.profilePage.postData.push(newPost);
+        //     this._state.profilePage.newPostText = "";
+        //     this._rerenderEntireTree()
+        // } else if (action.type === "CHANGE-NEW-TEXT") {
+        //     this._state.profilePage.newPostText = action.newText
+        //     this._rerenderEntireTree()
+        // } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+        //     this._state.messagesPage.newMessageBody = action.body
+        //     this._rerenderEntireTree()
+        // } else if (action.type === "SEND-MESSAGE") {
+        //     let body = this._state.messagesPage.newMessageBody
+        //     this._state.messagesPage.newMessageBody = ""
+        //     this._state.messagesPage.messagesData.push({id: 6, text: body})
+        //     this._rerenderEntireTree()
+        // }
     }
 }
 
